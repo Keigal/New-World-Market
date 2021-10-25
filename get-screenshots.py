@@ -15,7 +15,37 @@ sell_image = 'resources/genera/sell_image.png'
 resources_image = 'resources/categories/resources.png'
 raw_resources_image = 'resources/subcategories/raw_resources.png'
 woods_image = 'resources/subcategories/woods.png'
-green_wood_image = 'resources/items/green_wood.png'
+# green_wood_image = 'resources/items/green_wood.png'
+back_image = 'resources/general/back.png'
+
+# Item lists, organized by subcategory with smallest scope
+woods = ['green_wood', 'aged_wood', 'wyrdwood', 'ironwood']
+
+# Function to simplify screenshotting process where possible
+# item will be the standardized item name string
+# isBuy is a Boolean to determine if we are screenshoting a buy or sell order
+def screenshotItem(item, isBuy):
+
+    # Dynamically getting file paths to images
+    img = 'resources/items/' + item + '.png'
+
+    # Selects green wood item
+    coords = pyautogui.locateOnScreen(img, grayscale=True, minSearchTime=minTimeToSearch, confidence=0.9)
+    pyautogui.moveTo(coords[0], coords[1], moveTime)
+    pyautogui.click() 
+
+    # Takes screenshot of shop page
+    time.sleep(sleepTime)
+
+    if isBuy:
+        pyautogui.screenshot('cache/buy-orders/' + item + '.png')
+    else:
+        pyautogui.screenshot('cache/sell-orders/' + item + '.png')
+
+    # Click back button back to sub-category selection
+    back_coords = pyautogui.locateOnScreen(back_image, grayscale=True, minSearchTime=minTimeToSearch, confidence=0.9)
+    pyautogui.moveTo(back_coords[0], back_coords[1], moveTime)
+    pyautogui.click() 
 
 #############################################################################
 # Collecting data from the buy menu
@@ -43,14 +73,18 @@ woods_coords = pyautogui.locateOnScreen(woods_image, grayscale=True, minSearchTi
 pyautogui.moveTo(woods_coords[0], woods_coords[1], moveTime)
 pyautogui.click() 
 
-# Selects green wood item
-green_wood_coords = pyautogui.locateOnScreen(green_wood_image, grayscale=True, minSearchTime=minTimeToSearch, confidence=0.9)
-pyautogui.moveTo(green_wood_coords[0], green_wood_coords[1], moveTime)
-pyautogui.click() 
+for wood in woods:
 
-# Takes screenshot of shop page
-time.sleep(sleepTime)
-pyautogui.screenshot('cache/buy-orders/green_wood.png')
+    screenshotItem(wood, True)
+
+# # Selects green wood item
+# green_wood_coords = pyautogui.locateOnScreen(green_wood_image, grayscale=True, minSearchTime=minTimeToSearch, confidence=0.9)
+# pyautogui.moveTo(green_wood_coords[0], green_wood_coords[1], moveTime)
+# pyautogui.click() 
+
+# # Takes screenshot of shop page
+# time.sleep(sleepTime)
+# pyautogui.screenshot('cache/buy-orders/green_wood.png')
 
 
 #############################################################################
