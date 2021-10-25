@@ -23,8 +23,8 @@ def readPrices(haystack):
 
     # Importing images
     haystack = cv2.imread(haystack)
-    needle = cv2.imread('resources/dashes.png')
-    order_img = cv2.imread('resources/order_green_wood.png')
+    needle = cv2.imread('resources/general/dashes.png')
+    order_img = cv2.imread('resources/general/order_green_wood.png')
 
     # Seartching for orders in market image
     result = cv2.matchTemplate(haystack, needle, cv2.TM_CCOEFF_NORMED)
