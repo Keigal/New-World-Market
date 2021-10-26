@@ -4,6 +4,7 @@
 # Using OpenCV template matching to find each individual market line
 import cv2
 import numpy as np
+from numpy.core.numeric import NaN
 import pytesseract as tess
 from PIL import Image as im
 
@@ -81,7 +82,10 @@ def readPrices(haystack):
         price = text_df.loc[text_df['left'] > 810, ['text']]
         
         # Takes extracted price and converts from dataframe/string to float
-        price = float(price.iat[0, 0])
+        try:
+            price = float(price.iat[0, 0])
+        except:
+            price = NaN
         
         # Adding found price to list of prices
         prices.append(price)
