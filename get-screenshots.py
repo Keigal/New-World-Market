@@ -5,7 +5,7 @@ import pyautogui
 import time
 
 # Config
-moveTime = 0.1          # Putting very little effort into making program seem like a human
+moveTime = 0.2          # Putting very little effort into making program seem like a human
 sleepTime = 2        # Gives time for data to load before taking screenshot
 minTimeToSearch = 2     # Ensures that program gives time for page to load before saying it couldn't find screenshot
 
@@ -15,7 +15,6 @@ sell_image = 'resources/genera/sell_image.png'
 resources_image = 'resources/categories/resources.png'
 raw_resources_image = 'resources/subcategories/raw_resources.png'
 woods_image = 'resources/subcategories/woods.png'
-# green_wood_image = 'resources/items/green_wood.png'
 back_image = 'resources/general/back.png'
 
 # Item lists, organized by subcategory with smallest scope
@@ -76,16 +75,6 @@ pyautogui.click()
 for wood in woods:
 
     screenshotItem(wood, True)
-
-# # Selects green wood item
-# green_wood_coords = pyautogui.locateOnScreen(green_wood_image, grayscale=True, minSearchTime=minTimeToSearch, confidence=0.9)
-# pyautogui.moveTo(green_wood_coords[0], green_wood_coords[1], moveTime)
-# pyautogui.click() 
-
-# # Takes screenshot of shop page
-# time.sleep(sleepTime)
-# pyautogui.screenshot('cache/buy-orders/green_wood.png')
-
 
 #############################################################################
 # Collecting data from the sell menu
