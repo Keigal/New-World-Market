@@ -1,5 +1,5 @@
-# Provides function which takes in two images, and outputs a list of prices.
-# Function takes in two file paths as strings, the needle then haystack.
+# Provides function which takes in two images, and outputs the low price and average of the prices.
+# Function takes in one file path, which should be a screenshot of market orders.
 
 # Using OpenCV template matching to find each individual market line
 import cv2
@@ -75,6 +75,9 @@ def readPrices(haystack):
 
         # Extracting text from upscaled image
         text_df = tess.image_to_data(img, output_type=tess.Output.DATAFRAME)
+
+        # Dropping any rows with a null value extracted
+        text_df = text_df.dropna()
         
         # Extracting price from the dataframe
         # This may be a problematic solution, as it only gets the first value that's true. By limiting lower end we limit the range in which a false positive can appear.
@@ -89,9 +92,6 @@ def readPrices(haystack):
         
         # Adding found price to list of prices
         prices.append(price)
-
-        # Dropping any rows with a null value extracted
-        text_df = text_df.dropna()
 
     # Dropping any nan values that got into prices list
     prices = [price for price in prices if price == price]
