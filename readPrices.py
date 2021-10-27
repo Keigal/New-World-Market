@@ -96,4 +96,12 @@ def readPrices(haystack):
     # Dropping any nan values that got into prices list
     prices = [price for price in prices if price == price]
 
-    return prices
+    # Find low price
+    lowPrice = min(prices)
+
+    # Find average and round to two digits
+    averagePrice = sum(prices) / len(prices)
+
+    averagePrice = round(averagePrice, 2)
+
+    return lowPrice, averagePrice

@@ -1,6 +1,10 @@
-images used for navigation are taken from game running full-screen @ 1920x 1080
+## Notes on usage
 
-images used to parse are extracted directly from screenshots# New-World-Market
+* Images used for navigation are taken from game running full-screen @ 1920x 1080.
+
+* Images used to parse are extracted directly from screenshots using something like paint.
+
+* The average price isn't a true average, but rather an average of just the top orders included in the screenshot.
 
 ## File Structure
 
